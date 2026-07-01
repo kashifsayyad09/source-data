@@ -1,0 +1,46 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy-prod:
+    name: Production Deployment
+    runs-on: ubuntu-latest
+
+    environment:
+      name: production
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Show Branch
+        run: |
+         echo "Current Branch: ${{ github.ref_name }}"
+
+      - name: Production Approval
+        run: echo "Production deployment approved."
+
+      - name: Deploy to Production
+        run: |
+          echo "Deploying application to Production..."
+          sleep 3
+          echo "Production Deployment Successful"
+
+      - name: Smoke Test
+        run: |
+          echo "Running Smoke Tests..."
+          sleep 2
+          echo "Smoke Tests Passed"
+
+      - name: Health Check
+        run: |
+          echo "Checking Production Health..."
+          sleep 2
+          echo "Application Healthy"
+
+      - name: Deployment Completed
+        run: echo "Production Deployment Completed Successfully"
