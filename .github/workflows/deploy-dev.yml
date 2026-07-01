@@ -1,0 +1,35 @@
+name: Deploy to Development
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Show Branch
+        run: echo "Current Branch: ${{ github.ref_name }}"
+
+      - name: Simulate Build
+        run: |
+          echo "Building application..."
+          sleep 3
+          echo "Build Successful"
+
+      - name: Simulate Deployment
+        run: |
+          echo "Deploying to Development Environment..."
+          sleep 3
+          echo "Deployment Successful"
+
+      - name: Health Check
+        run: |
+          echo "Running Health Check..."
+          sleep 2
+          echo "Application is Healthy ✅"
