@@ -13,8 +13,10 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Show Branch
-        run: echo "Current Branch: ${{ github.ref_name }}"
+      - name: Show Current Branch
+        run: |
+         
+         echo "Current Branch: ${{ github.ref_name }}"
 
       - name: Simulate Build
         run: |
@@ -24,7 +26,7 @@ jobs:
 
       - name: Simulate Deployment
         run: |
-          echo "Deploying to Development Environment..."
+          echo "Deploying to Development..."
           sleep 3
           echo "Deployment Successful"
 
@@ -32,4 +34,4 @@ jobs:
         run: |
           echo "Running Health Check..."
           sleep 2
-          echo "Application is Healthy ✅"
+          echo "Application is Healthy"
