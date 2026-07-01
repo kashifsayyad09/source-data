@@ -1,0 +1,36 @@
+name: Deploy to QA
+
+on:
+  push:
+    branches:
+      - 'release/*'
+
+jobs:
+  deploy-qa:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Show Branch
+        run: |
+          echo "Current Branch: ${{ github.ref_name }}"
+
+      - name: Deploy to QA
+        run: |
+          echo "Deploying application to QA..."
+          sleep 3
+          echo "QA Deployment Successful"
+
+      - name: Run Regression Tests
+        run: |
+          echo "Running Regression Tests..."
+          sleep 2
+          echo "Regression Tests Passed"
+
+      - name: Health Check
+        run: |
+          echo "Checking QA Health..."
+          sleep 2
+          echo "Application Healthy"
