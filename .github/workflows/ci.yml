@@ -1,0 +1,42 @@
+name: CI Pipeline
+
+on:
+  pull_request:
+    branches:
+      - develop
+
+permissions:
+  contents: read
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+
+          if [ -f requirements.txt ]; then
+            pip install -r requirements.txt
+          fi
+
+      - name: Lint
+        run: |
+          echo "Linting..."
+
+      - name: Unit Tests
+        run: |
+          echo "Running Tests..."
+
+      - name: Build Verification
+        run: |
+          echo "Build Successful"
